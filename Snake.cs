@@ -19,12 +19,30 @@ namespace SnakeGame
 
         private void InitializeSnake()
         {
-            PictureBox snakePixel = new PictureBox();
+            this.AddPixel(280, 280);
+            this.AddPixel(280, 300);
+            this.AddPixel(280, 320);
+
+        }
+
+        private void AddPixel(int left, int top)
+        {
+            PictureBox snakePixel;
+            snakePixel = new PictureBox();
             snakePixel.Height = 20;
             snakePixel.Width = 20;
             snakePixel.BackColor = Color.ForestGreen;
+            snakePixel.Left = left;
+            snakePixel.Top = top;
             snakePixels.Add(snakePixel);
-
+        }
+        public void Render(Form form)
+        {
+            foreach (var sp in snakePixels)
+            {
+                form.Controls.Add(sp);
+                sp.BringToFront();
+            }
         }
     }
 }
