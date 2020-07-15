@@ -12,9 +12,6 @@ namespace SnakeGame
 {
     public partial class Game : Form
     {
-        int horVelocity = 0;
-        int verVelocity = 0;
-        int step = 20;
 
         Area area = new Area();
         Snake snake = new Snake();
@@ -23,6 +20,7 @@ namespace SnakeGame
         {
             InitializeComponent();
             InitializeGame();
+            InitializeTimer();
         }
 
         private void InitializeTimer()
@@ -34,7 +32,7 @@ namespace SnakeGame
 
         private void MainTimer_Tick(object sender, EventArgs e)
         {
-
+            snake.Move();
         }
         private void InitializeGame()
         {
@@ -46,6 +44,44 @@ namespace SnakeGame
 
             //adding snake body
             snake.Render(this);
+
+            //add keyboard controller handler
+            this.KeyDown += new KeyEventHandler(Game_KeyDown);
         }
+        private void Game_KeyDown(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.Right:
+                    if (snake.HorizontalVelocity != -1)
+                    {
+                        snake.HorizontalVelocity = 1;
+                    }
+                    snake.VerticalVelocity = 0;
+                    break;
+                case Keys.Left:
+                    if (snake.HorizontalVelocity != 1)
+                    {
+                        snake.HorizontalVelocity = -1;
+                    }
+                    snake.VerticalVelocity = 0;
+                    break;
+                case Keys.Down:
+                    snake.HorizontalVelocity = 0;
+                    if (snake.VerticalVelocity != -1)
+                    {
+                        snake.VerticalVelocity = 1;
+                    }
+                    break;
+                case Keys.Up:
+                    snake.HorizontalVelocity = 0;
+                    if (snake.VerticalVelocity != 1)
+                    {
+                        snake.VerticalVelocity = -1;
+                    }
+                    break;
+            }
+        }
+    
     }
 }
