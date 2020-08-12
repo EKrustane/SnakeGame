@@ -29,13 +29,13 @@ namespace SnakeGame
 
         }
 
-        private void AddPixel(int left, int top)
+        public void AddPixel(int left, int top)
         {
             PictureBox snakePixel;
             snakePixel = new PictureBox();
             snakePixel.Height = 20;
             snakePixel.Width = 20;
-            snakePixel.BackColor = Color.CornflowerBlue;
+            snakePixel.BackColor = Color.DarkRed;
             snakePixel.Left = left;
             snakePixel.Top = top;
             snakePixels.Add(snakePixel);

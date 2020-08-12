@@ -19,7 +19,7 @@ namespace SnakeGame
         {
             this.Width = 20;
             this.Height = 20;
-            this.BackColor = Color.DarkRed;
+            this.BackColor = Color.Yellow;
         }
     }
 }
